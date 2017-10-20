@@ -82,3 +82,19 @@ def addRaceToCart(race):
               (race,))
     conn.commit()
     conn.close()
+def cartItems():
+    conn = sqlite3.connect('raceInfo.db')
+    c = conn.cursor()
+    c.execute('''SELECT RACEID from
+                              CART''')
+    cartRaces = c.fetchall()
+    raceCart = []
+    for race in cartRaces:
+        c.execute('''SELECT RACENAME, RACECOST from
+                                  RACES
+                                  INNER JOIN CART on CART.RACEID = RACES.RACEID WHERE CART.RACEID=?''',(race))
+        races = c.fetchall()
+        raceCart.append(races)
+    print(raceCart)
+    return raceCart
+cartItems()

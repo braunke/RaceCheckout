@@ -19,7 +19,12 @@
 </select>
     <input type='submit' value='submit'>-->
 </form>
-<p>Races Chosen</p><ul></ul>
+<p>Races Chosen</p>
+<ul>
+    {%  for races in cartItems %}
+    <li>{{ races[0][0] }} ${{ races[0][1] }}</li>
+    {% endfor %}
+</ul>
 <button type="button">Checkout</button>
 
 </body>

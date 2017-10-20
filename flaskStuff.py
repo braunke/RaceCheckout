@@ -6,13 +6,16 @@ import database
 @app.route('/')
 def hello_world():
     raceList = database.showRaces()
-    return render_template('homePage.html', raceList=raceList)
+    cartItems = database.cartItems()
+    return render_template('homePage.html', raceList=raceList, cartItems=cartItems)
 @app.route('/save', methods=['POST'])
 def saveSearch():
     raceName = request.form['raceName']
     database.addRaceToCart(raceName)
     print(raceName)
     return redirect('/')
-
+@app.route('/update', methods=['POST'])
+def updateCart():
+    return redirect('/')
 if __name__ == '__main__':
     app.run()
