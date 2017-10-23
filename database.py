@@ -29,13 +29,13 @@ def createDatabase():
         print(err)
         print("The database already exists")
 #createDatabase()
-def showRaces():
+def showRaces(type):
     conn = sqlite3.connect('raceInfo.db')
     c = conn.cursor()
     c.execute('''SELECT RACEID, RACENAME, RACECOST from
-                          RACES''')
+                          RACES WHERE RACEID LIKE ? ''', (type,))
     raceList=list(c.fetchall())
-    print(raceList)
+
     return raceList
 #showRaces()
 def deleteRows():
@@ -68,20 +68,29 @@ def createRaceList():
     raceList.append((12, "San Jose", 99.99))
     raceList.append((13,"Ashville", 103.99))
     raceList.append((10, "Minnesota", 89.99))
-    print(raceList)
+    raceList.append((20, "SoCal", 103.99))
+    raceList.append((21, "Palmerton", 123.99))
+    raceList.append((22, "Michigan", 104.99))
+    raceList.append((23, "Austin", 114.99))
+    raceList.append((30, "Breckenridge", 134.99))
+    raceList.append((31, "Dallas", 209.99))
+    raceList.append((32, "Florida", 123.99))
+    raceList.append((33, "Vermont", 144.99))
+
     for race in raceList:
         createRaces(race)
 #createRaceList()
 def addRaceToCart(race):
     conn = sqlite3.connect('raceInfo.db')
     c = conn.cursor()
-    print(race)
+
     c.execute('''INSERT INTO Cart
                                  (RACEID)\
                               VALUES(? )''',
               (race,))
     conn.commit()
     conn.close()
+#list of races in cart
 def cartItems():
     conn = sqlite3.connect('raceInfo.db')
     c = conn.cursor()
@@ -95,6 +104,24 @@ def cartItems():
                                   INNER JOIN CART on CART.RACEID = RACES.RACEID WHERE CART.RACEID=?''',(race))
         races = c.fetchall()
         raceCart.append(races)
-    print(raceCart)
     return raceCart
-cartItems()
+#clears cart
+def clearCart():
+    conn = sqlite3.connect('raceInfo.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM CART")
+    conn.commit()
+    conn.close()
+def cartPriceTotal():
+    conn = sqlite3.connect('raceInfo.db')
+    c = conn.cursor()
+    c.execute('''SELECT RACECOST from RACES
+              INNER JOIN CART on CART.RACEID = RACES.RACEID ''')
+    costs = c.fetchall()
+    totalCost = 0
+    for race in costs:
+        cost = (race[0])
+        totalCost += cost
+    displayCost =(round(totalCost, 2))
+    return displayCost
+cartPriceTotal()

@@ -6,25 +6,43 @@
 </head>
 <body>
 <form method="POST" action="/save" ><h1>Sprint Races</h1>
-    <label for="sprintRaces">Sprint Races</label>
+<label for="sprintRaces">Sprint Races</label>
 <select id="sprintRaces" name='raceName'>
-    {% for races in raceList %}
+    {% for races in sprintRaceList %}
     <option value="{{ races[0] }}">{{ races[1] }} ${{ races[2] }}</option>
-{%  endfor %}
+    {%  endfor %}
 </select>
     <button type="submit">Add Sprint Race</button>
-<!--<h1>Super Races</h1>
-<select name='super'>
-    <option value="10, Chicago, 56.78">Chicago</option>
-</select>
-    <input type='submit' value='submit'>-->
 </form>
-<p>Races Chosen</p>
+<form method="POST" action="/save" ><h1>Super Races</h1>
+<label for="sprintRaces">Super Races</label>
+<select id="superRaces" name='raceName'>
+    {% for races in superRaceList %}
+    <option value="{{ races[0] }}">{{ races[1] }} ${{ races[2] }}</option>
+    {%  endfor %}
+</select>
+    <button type="submit">Add Super Race</button>
+</form>
+<form method="POST" action="/save" ><h1>Beast Races</h1>
+<label for="beastRaces">Beast Races</label>
+<select id="beastRaces" name='raceName'>
+    {% for races in beastRaceList %}
+    <option value="{{ races[0] }}">{{ races[1] }} ${{ races[2] }}</option>
+    {%  endfor %}
+</select>
+    <button type="submit">Add Beast Race</button>
+
+</form>
+<p>Races Chosen:</p>
 <ul>
     {%  for races in cartItems %}
     <li>{{ races[0][0] }} ${{ races[0][1] }}</li>
     {% endfor %}
 </ul>
+<p>Cost Total:</p>{{ total }}
+<form method="POST" action="/delete" >
+<button type="submit">Clear Cart</button>
+</form>
 <button type="button">Checkout</button>
 
 </body>

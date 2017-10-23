@@ -5,17 +5,24 @@ import database
 
 @app.route('/')
 def hello_world():
-    raceList = database.showRaces()
+    sprintRaceList = database.showRaces('1%')
+    superRaceList = database.showRaces('2%')
+    beastRaceList = database.showRaces('3%')
+    total = database.cartPriceTotal()
     cartItems = database.cartItems()
-    return render_template('homePage.html', raceList=raceList, cartItems=cartItems)
+    return render_template('homePage.html', sprintRaceList=sprintRaceList, superRaceList=superRaceList, beastRaceList=beastRaceList, cartItems=cartItems, total = total)
 @app.route('/save', methods=['POST'])
 def saveSearch():
     raceName = request.form['raceName']
     database.addRaceToCart(raceName)
-    print(raceName)
+
     return redirect('/')
 @app.route('/update', methods=['POST'])
 def updateCart():
+    return redirect('/')
+@app.route('/delete', methods=['POST'])
+def clearCart():
+    database.clearCart()
     return redirect('/')
 if __name__ == '__main__':
     app.run()
