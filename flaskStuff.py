@@ -24,5 +24,10 @@ def updateCart():
 def clearCart():
     database.clearCart()
     return redirect('/')
+@app.route('/remove', methods=['POST'])
+def removeCartItem():
+    race = request.form['removeRaceItem']
+    database.removeCartItem(race)
+    return redirect('/')
 if __name__ == '__main__':
     app.run()

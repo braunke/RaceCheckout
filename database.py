@@ -96,10 +96,10 @@ def cartItems():
     c = conn.cursor()
     c.execute('''SELECT RACEID from
                               CART''')
-    cartRaces = c.fetchall()
+    cartRaceID = c.fetchall()
     raceCart = []
-    for race in cartRaces:
-        c.execute('''SELECT RACENAME, RACECOST from
+    for race in cartRaceID:
+        c.execute('''SELECT RACENAME, RACECOST, RACES.RACEID from
                                   RACES
                                   INNER JOIN CART on CART.RACEID = RACES.RACEID WHERE CART.RACEID=?''',(race))
         races = c.fetchall()
@@ -124,4 +124,9 @@ def cartPriceTotal():
         totalCost += cost
     displayCost =(round(totalCost, 2))
     return displayCost
-cartPriceTotal()
+def removeCartItem(race):
+    conn = sqlite3.connect('raceInfo.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM CART WHERE RACEID =?",(race,))
+    conn.commit()
+    conn.close()

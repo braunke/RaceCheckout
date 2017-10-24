@@ -34,11 +34,21 @@
 
 </form>
 <p>Races Chosen:</p>
-<ul>
+<table>
     {%  for races in cartItems %}
-    <li>{{ races[0][0] }} ${{ races[0][1] }}</li>
+        <tr>
+    <td>{{ races[0][0] }} </td>
+            <td>${{ races[0][1] }}</td>
+
+        <td>
+        <form method="POST" action="/remove">
+            <input type="hidden" name="removeRaceItem" value={{ races[0][2] }}></input>
+            <button type="submit">Remove Race</button>
+        </form>
+        </td>
+       </tr>
     {% endfor %}
-</ul>
+</table>
 <p>Cost Total:</p>{{ total }}
 <form method="POST" action="/delete" >
 <button type="submit">Clear Cart</button>
