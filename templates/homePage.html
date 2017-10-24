@@ -49,12 +49,14 @@
        </tr>
     {% endfor %}
 </table>
-<p>Cost Total:</p>{{ Message }}<br>
+<p>Cost Total:</p><p>{{ Message }}</p><br>
 {{ total }}
 <form method="POST" action="/delete" >
 <button type="submit">Clear Cart</button>
 </form>
-<button type="button">Checkout</button>
+<form method="POST" action="/confirm">
+    <button type="submit">Checkout</button>
+</form>
 
 </body>
 </html>
