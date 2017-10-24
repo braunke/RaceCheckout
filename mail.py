@@ -21,7 +21,7 @@ def sendRaceEmail(receiver):
     msg['To'] = receiver
 
     # Create the body of the message (a plain-text and an HTML version).
-    text = render_template('emailForm.txt')
+    text = render_template('emailForm.txt', total = total, cartItems= cartItems)
     html = render_template('emailForm.html', total = total, cartItems= cartItems)
 
     plain_text_message = MIMEText(text, 'plain')

@@ -1,0 +1,8 @@
+"Hello! \n"
+		"You have recently selected some Spartan Races from our site to sign up for. Here is a list of them:  \n"
+		cartItems
+
+		"Your total was" + total+ "" and has been automatically taken out of your account \n"
+
+		"Thanks,/n"
+		"PythonCapstone Racing"
