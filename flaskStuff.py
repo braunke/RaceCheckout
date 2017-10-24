@@ -10,16 +10,18 @@ def hello_world():
     beastRaceList = database.showRaces('3%')
     total = database.cartPriceTotal()
     cartItems = database.cartItems()
-    return render_template('homePage.html', sprintRaceList=sprintRaceList, superRaceList=superRaceList, beastRaceList=beastRaceList, cartItems=cartItems, total = total)
+    Message = None
+    discount = database.discountOnRaces
+    if discount != 1:
+        Message = "25% discount for signing up for a Trifecta!"
+    return render_template('homePage.html', Message = Message, sprintRaceList=sprintRaceList, superRaceList=superRaceList, beastRaceList=beastRaceList, cartItems=cartItems, total = total)
 @app.route('/save', methods=['POST'])
 def saveSearch():
     raceName = request.form['raceName']
     database.addRaceToCart(raceName)
 
     return redirect('/')
-@app.route('/update', methods=['POST'])
-def updateCart():
-    return redirect('/')
+
 @app.route('/delete', methods=['POST'])
 def clearCart():
     database.clearCart()

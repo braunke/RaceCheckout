@@ -1,4 +1,5 @@
 import sqlite3
+import math
 #database to store race info and result info
 def createDatabase():
     try:
@@ -112,21 +113,50 @@ def clearCart():
     c.execute("DELETE FROM CART")
     conn.commit()
     conn.close()
-def cartPriceTotal():
-    conn = sqlite3.connect('raceInfo.db')
-    c = conn.cursor()
-    c.execute('''SELECT RACECOST from RACES
-              INNER JOIN CART on CART.RACEID = RACES.RACEID ''')
-    costs = c.fetchall()
-    totalCost = 0
-    for race in costs:
-        cost = (race[0])
-        totalCost += cost
-    displayCost =(round(totalCost, 2))
-    return displayCost
+
 def removeCartItem(race):
     conn = sqlite3.connect('raceInfo.db')
     c = conn.cursor()
     c.execute("DELETE FROM CART WHERE RACEID =?",(race,))
     conn.commit()
     conn.close()
+def cartList():
+    conn = sqlite3.connect('raceInfo.db')
+    c = conn.cursor()
+    c.execute('''SELECT RACEID from
+                                  CART''')
+    cartRaceID = c.fetchall()
+    cartList = []
+    for races in cartRaceID:
+        cartList.append(races[0])
+    return cartList
+def discountOnRaces(cartList):
+    newCartList = []
+    for race in cartList:
+        id = race / 10
+        id = math.floor(id)
+        newCartList.append(id)
+    discount = 1
+    if 1 in newCartList:
+        if 2 in newCartList:
+            if 3 in newCartList:
+                discount = .75
+    return (discount)
+
+def cartPriceTotal():
+    conn = sqlite3.connect('raceInfo.db')
+    c = conn.cursor()
+    c.execute('''SELECT RACECOST from RACES
+              INNER JOIN CART on CART.RACEID = RACES.RACEID ''')
+    costs = c.fetchall()
+    cartIds = cartList()
+    discount = discountOnRaces(cartIds)
+    totalCost = 0
+    for race in costs:
+        cost = (race[0])
+        totalCost += cost
+    amountOff = totalCost * discount
+    displayCost =(round(amountOff, 2))
+    return displayCost
+
+
