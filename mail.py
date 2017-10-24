@@ -22,27 +22,7 @@ def sendRaceEmail(receiver):
 
     # Create the body of the message (a plain-text and an HTML version).
     text = "Hello " "\nThis is an email from the Wintr team to remind you that your password for Wintr is: \n" "\n Thank you for using Wintr! \n sincerely, \n the Wintr team"
-    html = """\
-	<html>
-	<head></head>
-	<body>
-		<p>
-		Hello! <br>
-		You have recently selected some Spartan Races from our site to sign up for. Here is a list of them:  <br>
-		<br>
-		<ol>
-		    
-            {cartItems[0][1]}
-                
-		<br>
-		<p> Your total was ${total} and has been automatically taken out of your account </p>
-		<br>
-		Thanks,<br>
-		PythonCapstone Racing 
-		</p>
-	</body>
-	</html>
-	""".format(cartItems=cartItems, total = total)
+    html = render_template('emailForm.html', total = total, cartItems= cartItems)
 
     plain_text_message = MIMEText(text, 'plain')
     html_message = MIMEText(html, 'html')

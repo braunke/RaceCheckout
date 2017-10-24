@@ -31,7 +31,7 @@ def removeCartItem():
     return redirect('/')
 @app.route('/confirm', methods=['POST'])
 def confirmationPage():
-    total = dbFunctions .cartPriceTotal()
+    total, discout = dbFunctions .cartPriceTotal()
     cartItems = dbFunctions .cartItems()
     return render_template('confirmation.html', total = total, cartItems=cartItems)
 @app.route('/email', methods=['GET', 'POST'])

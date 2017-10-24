@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+</head>
+<body>
+
+
+		<p>
+		Hello! <br>
+		You have recently selected some Spartan Races from our site to sign up for. Here is a list of them:  <br>
+		<br>
+
+		<ul>
+		    {%  for race in cartItems %}
+            <li>{{ race[0][0] }} ${{ race[0][1] }}</li>
+                {% endfor %}
+        </ul>
+
+		<br>
+		<p> Your total was ${{total}} and has been automatically taken out of your account </p>
+		<br>
+		Thanks,<br>
+		PythonCapstone Racing
+
+	</body>
+	</html>
+
