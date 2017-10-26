@@ -31,14 +31,22 @@ def removeCartItem():
     return redirect('/')
 @app.route('/confirm', methods=['POST'])
 def confirmationPage():
+    sprintRaceList = database.showRaces('1%')
+    superRaceList = database.showRaces('2%')
+    beastRaceList = database.showRaces('3%')
     total, discout = dbFunctions .cartPriceTotal()
     cartItems = dbFunctions .cartItems()
-    return render_template('confirmation.html', total = total, cartItems=cartItems)
+    if total > 0:
+        return render_template('confirmation.html', total = total, cartItems=cartItems)
+    else:
+        return redirect('/')
+
 @app.route('/email', methods=['GET', 'POST'])
 def sendEmail():
     if request.method == 'POST':
         receiver = request.form['email']
         mail.sendRaceEmail(receiver)
+        dbFunctions.clearCart()
     return render_template("emailPage.html")
 
 if __name__ == '__main__':

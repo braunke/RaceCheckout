@@ -5,12 +5,13 @@ from smtplib import SMTP
 import os
 import dbFunctions
 from flask import Flask, render_template, flash, session, redirect, request, url_for
-
+#help with mail stuff
+#https://stackoverflow.com/questions/42136418/send-html-email-using-flask-in-python
 
 
 def sendRaceEmail(receiver):
     sender = "pythoncapstoneracing@gmail.com"
-    sender_password = 'dbkokomo27' #os.environ.get('WINTR_EMAIL_PASSWORD')
+    sender_password = 'dbkokomo27'#os.environ.get('EMAIL_PASSWORD')
 
     total, discount = dbFunctions.cartPriceTotal()
     cartItems = dbFunctions.cartItems()

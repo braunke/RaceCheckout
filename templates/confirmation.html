@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet"
+      type="text/css"
+      href="../static/styles/confirm.css"/>
 <head>
     <meta charset="UTF-8">
     <title>Confirmation</title>
 </head>
 <body>
 <h1>Confirmation Page</h1>
-<h3>Please confirm these are the race you want to register for</h3>
+<h3>Please confirm these are the race passes you want to purchase:</h3>
 <table>
     {%  for races in cartItems %}
         <tr>
@@ -16,6 +19,10 @@
     {% endfor %}
 </table>
 <p>Your total is ${{ total }}</p>
-<p>If these are correct click <a href="/email"> next</a>, if not click <a href='/'>here</a> to go back </p>
+<p>If these are correct enter your email below, if not click <a href='/'>here</a> to go back </p>
+<form method="POST" action="/email">
+    <input type="email" name="email" required placeholder="Enter a valid email address"><br><br>
+  <input class="submit" type="submit" value="Submit">
+</form>
 </body>
 </html>

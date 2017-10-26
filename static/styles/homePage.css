@@ -1,0 +1,81 @@
+body {
+    background-color: aliceblue;
+}
+h1 {
+  font-family:Helvetica ;
+    font-weight: bold;
+}
+.sprint {
+    color: red;
+}
+.super{
+    color: blue;
+}
+.beast{
+    color: green;
+}
+.checkout {
+    background-color: lightblue;
+    font-size:24px;
+    border-radius: 12px;
+}
+.clear {
+    background-color: lightsteelblue;
+    font-size:16px;
+    border-radius: 12px;
+}
+.header{
+    margin:auto;
+    text-align: center;
+    border-bottom: double;
+    border-bottom-width: thick;
+    border-color:lightslategrey;
+}
+.races{
+    float: left;
+    padding: 8px;
+
+}
+.cart{
+    float: right;
+    padding: 50px;
+    border: solid;
+    border-color:lightslategrey;
+
+
+}
+.top{
+    margin-top: 50px;
+
+    padding-bottom: 25px;
+}
+table{
+
+    border: solid;
+    border-color: lightslategrey;
+}
+.raceSelector{
+    font-size: 16px;
+
+}
+#beastRaces{
+    font-size: 14px;
+    padding: 10px 24px;
+    background-color: darkseagreen;
+}
+#sprintRaces
+{
+    font-size: 14px;
+    padding: 10px 24px;
+    background-color: indianred;
+}
+#superRaces{
+    font-size: 14px;
+    padding: 10px 24px;
+    background-color: dodgerblue;
+}
+.total{
+    border: solid;
+    border-color: lightslategrey;
+
+}

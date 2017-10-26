@@ -42,7 +42,7 @@ def showRaces(type):
 def deleteRows():
 
         conn = sqlite3.connect('raceInfo.db')
-        cursor = conn.execute('DELETE FROM RACES WHERE RACENAME= ?',("Minnesota",))
+        cursor = conn.execute('DELETE FROM RACES ')
         # uses rowcount to see if a row was affected
         deleteStatus = (cursor.rowcount)
         # depending on if rows were affected or not a message will print
@@ -65,18 +65,18 @@ def createRaces(race):
 #createRaces()
 def createRaceList():
     raceList = []
-    raceList.append((11, "Chicago", 99.99))
-    raceList.append((12, "San Jose", 99.99))
-    raceList.append((13,"Ashville", 103.99))
-    raceList.append((10, "Minnesota", 89.99))
-    raceList.append((20, "SoCal", 103.99))
-    raceList.append((21, "Palmerton", 123.99))
-    raceList.append((22, "Michigan", 104.99))
-    raceList.append((23, "Austin", 114.99))
-    raceList.append((30, "Breckenridge", 134.99))
-    raceList.append((31, "Dallas", 209.99))
-    raceList.append((32, "Florida", 123.99))
-    raceList.append((33, "Vermont", 144.99))
+    raceList.append((11, "Chicago Sprint", 99.99))
+    raceList.append((12, "San Jose Sprint", 99.99))
+    raceList.append((13,"Ashville Sprint", 103.99))
+    raceList.append((10, "Minnesota Sprint", 89.99))
+    raceList.append((20, "SoCal Super", 103.99))
+    raceList.append((21, "Palmerton Super", 123.99))
+    raceList.append((22, "Michigan Super", 104.99))
+    raceList.append((23, "Austin Super", 114.99))
+    raceList.append((30, "Breckenridge Beast", 134.99))
+    raceList.append((31, "Dallas Beast", 209.99))
+    raceList.append((32, "Florida Beast", 123.99))
+    raceList.append((33, "Vermont Beast", 144.99))
 
     for race in raceList:
         createRaces(race)
