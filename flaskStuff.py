@@ -31,10 +31,7 @@ def removeCartItem():
     return redirect('/')
 @app.route('/confirm', methods=['POST'])
 def confirmationPage():
-    sprintRaceList = database.showRaces('1%')
-    superRaceList = database.showRaces('2%')
-    beastRaceList = database.showRaces('3%')
-    total, discout = dbFunctions .cartPriceTotal()
+    total, discout = dbFunctions.cartPriceTotal()
     cartItems = dbFunctions .cartItems()
     if total > 0:
         return render_template('confirmation.html', total = total, cartItems=cartItems)

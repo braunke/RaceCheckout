@@ -36,7 +36,6 @@ def showRaces(type):
     c.execute('''SELECT RACEID, RACENAME, RACECOST from
                           RACES WHERE RACEID LIKE ? ''', (type,))
     raceList=list(c.fetchall())
-
     return raceList
 #showRaces()
 def deleteRows():

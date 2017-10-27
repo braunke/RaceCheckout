@@ -1,11 +1,10 @@
 from email.mime.text import MIMEText
-from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from smtplib import SMTP
 import os
 import dbFunctions
-from flask import Flask, render_template, flash, session, redirect, request, url_for
-#help with mail stuff
+from flask import Flask, render_template
+#help with mail stuff, plus from group work
 #https://stackoverflow.com/questions/42136418/send-html-email-using-flask-in-python
 
 
